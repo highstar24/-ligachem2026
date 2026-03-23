@@ -461,10 +461,10 @@ html, body {
 /* ── 하이스타 로고 공통 ── */
 .highstar-logo {
   position: absolute;
-  top: 14px;
-  right: 16px;
-  width: 34px;
-  height: 34px;
+  top: clamp(12px, 3vh, 40px);
+  right: clamp(10px, 2vw, 16px);
+  width: clamp(36px, 6vw, 71px);
+  height: clamp(36px, 6vw, 71px);
   object-fit: contain;
   z-index: 9999 !important;
   opacity: 0.95;
