@@ -14,13 +14,17 @@
         .header-section { padding: 40px 30px 20px; display: flex; flex-direction: column; position: relative; z-index: 2; height: 180px; }
         .content-section { flex: 1; background: var(--lilac); border-radius: 30px 30px 0 0; padding: 35px 25px 90px; overflow-y: auto; display: flex; flex-direction: column; gap: 18px; touch-action: pan-y; }
         .card.cover, .card.cta { background: var(--dark); justify-content: center; align-items: center; padding: 40px; text-align: center; }
-
-        /* 🚨 로고 CSS 수정: 크기 줄이고 우측 상단으로 밀착 */
-        .logo { position: absolute; top: 15px; right: 15px; width: 50px; z-index: 10; pointer-events: none; }
-
+        
+        /* 🚨 수정 1: 로고를 왼쪽 상단(페이지 번호 위)으로 이동 */
+        .logo { position: absolute; top: 15px; left: 30px; width: 45px; z-index: 10; pointer-events: none; }
+        
+        /* 🚨 수정 2: 로고 자리 마련을 위해 페이지 번호를 아래로 살짝 내림 */
+        .page-num-header { font-size: 2.2rem; font-weight: 900; color: rgba(255,255,255,0.2); position: absolute; left: 30px; top: 65px; z-index: 1;}
+        
         .tag { display: inline-block; background: rgba(255,255,255,0.1); color: var(--lilac); padding: 8px 18px; border-radius: 20px; font-weight: 800; font-size: 1rem; margin-bottom: 20px; border: 1px solid rgba(210,199,255,0.3); }
-        .page-title { color: white; font-size: 1.8rem; font-weight: 800; line-height: 1.3; margin-top: 10px; }
-        .page-num-header { font-size: 2.5rem; font-weight: 900; color: rgba(255,255,255,0.2); position: absolute; left: 30px; top: 35px; z-index: 1;}
+        /* 제목 높이 조정 (로고랑 겹치지 않도록 마진 추가) */
+        .page-title { color: white; font-size: 1.7rem; font-weight: 800; line-height: 1.3; margin-top: 15px; }
+        
         .info-card { background: white; border-radius: 16px; padding: 25px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; }
         .info-card.dark { background: var(--dark); color: white; }
         .info-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 8px; color: var(--dark); line-height: 1.3; }
@@ -29,9 +33,22 @@
         .info-card.dark p { color: #d0d0d0; }
         .info-badge { display: inline-block; font-size: 0.9rem; font-weight: 800; color: var(--purple); margin-bottom: 8px; }
         .info-card.dark .info-badge { color: var(--neon); }
+        
         .cover-title { font-size: 3.5rem; font-weight: 900; color: var(--yellow); line-height: 1.2; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
         .cover-sub { font-size: 1.25rem; color: white; line-height: 1.6; margin-bottom: 40px; font-weight: 600; }
-        .cta-btn { display: inline-flex; align-items: center; justify-content: center; background: var(--neon); color: var(--dark); text-decoration: none; padding: 20px 30px; border-radius: 50px; font-weight: 900; font-size: 1.3rem; margin-top: 30px; box-shadow: 0 6px 20px rgba(225, 251, 98, 0.3); width: 100%; max-width: 320px; }
+        
+        /* 🚨 수정 3: 마지막 페이지 버튼 폭을 줄이고 디자인 다이어트 */
+        .cta-btn { 
+            display: inline-flex; align-items: center; justify-content: center; 
+            background: var(--neon); color: var(--dark); text-decoration: none; 
+            padding: 16px 28px; 
+            border-radius: 50px; font-weight: 900; font-size: 1.15rem; 
+            margin-top: 30px; box-shadow: 0 4px 15px rgba(225, 251, 98, 0.2); 
+            width: auto; 
+            min-width: 220px; 
+            max-width: 280px; 
+        }
+
         .bottom-bar { position: absolute; bottom: 0; left: 0; width: 100%; height: 60px; background: rgba(46, 42, 80, 0.95); display: flex; justify-content: space-between; align-items: center; padding: 0 25px; z-index: 10; pointer-events: none;}
         .bottom-text { font-size: 0.9rem; color: var(--neon); font-weight: 700; }
         .page-indicator { font-weight: 800; font-size: 1.1rem; color: white; }
@@ -140,7 +157,7 @@
         <p style="color: #d0d0d0; margin-bottom: 15px; font-size: 1.2rem; line-height: 1.6;">
             신한투자증권 리포트 원문과<br>더 깊은 투자 인사이트를<br>지금 바로 확인하세요.
         </p>
-        <a href="https://blog.naver.com/jin0oo" class="cta-btn" target="_blank">하이스타 블로그 바로가기 ➔</a>
+        <a href="https://blog.naver.com/jin0oo" class="cta-btn" target="_blank">블로그 바로가기 ➔</a>
         <div class="bottom-bar" style="background: transparent; flex-direction: column; justify-content: flex-end; padding-bottom: 30px;">
             <div style="font-size: 0.85rem; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 15px;">본 콘텐츠는 정보 제공 목적이며<br>특정 종목의 매수/매도를 추천하지 않습니다.</div>
             <div class="page-indicator" style="color: rgba(255,255,255,0.6);">06 / 06</div>
@@ -150,8 +167,9 @@
 
 <script>
     const logoUrl = 'https://cdn.jsdelivr.net/gh/highstar24/logo@main/logo_png.png';
+    // 🚨 1페이지와 마지막 페이지를 제외하고 2,3,4,5 페이지에만 왼쪽 상단 로고 추가
     document.querySelectorAll('.card').forEach((card, index) => {
-        if(index !== 5) { 
+        if(index !== 0 && index !== 5) { 
             const img = document.createElement('img'); 
             img.src = logoUrl; 
             img.className = 'logo'; 
@@ -190,7 +208,7 @@
         if (e.target.closest('a')) return;
 
         const diffX = startX - (currentX || e.changedTouches[0].clientX);
-
+        
         if (diffX > 50 && currentIndex < totalCards - 1) { 
             currentIndex++; 
             updateTransform(); 
@@ -198,7 +216,7 @@
             currentIndex--; 
             updateTransform(); 
         }
-
+        
         isDragging = false;
         currentX = 0;
     });
