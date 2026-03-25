@@ -3,28 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>카나프테라퓨틱스 카드뉴스(S)</title>
-    <meta property="og:title" content="카나프테라퓨틱스 카드뉴스(S)">
-    <meta property="og:description" content="주가 하락의 진실과 2025년 핵심 모멘텀 분석">
+    <!-- 🚨 오픈 그래프 (카톡 공유 썸네일/제목) 적용 -->
+    <title>리가켐바이오 카드뉴스(S)</title>
+    <meta property="og:title" content="리가켐바이오 카드뉴스(S)">
+    <meta property="og:description" content="J&J 1상 완료의 나비효과 및 신한투자증권 리포트 요약">
     <meta property="og:image" content="https://cdn.jsdelivr.net/gh/highstar24/logo@main/logo_png.png">
-
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
-
-        :root { 
-            --orange: #FF9B54; 
-            --purple: #8B5FDF; 
-            --blue: #4A72C9; 
-            --green: #B3E879; 
-            --dark: #2E2A50; 
-            --neon: #E1FB62;
-            --white: #FFFFFF;
-        }
-
+        :root { --yellow: #FFD230; --lilac: #D2C7FF; --purple: #5D5491; --neon: #E1FB62; --dark: #2E2A50; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; word-break: keep-all; }
         body, html { width: 100vw; height: 100vh; overflow: hidden; background-color: var(--dark); touch-action: none; }
-
-        /* 🚨 슬라이드 래퍼 추가: 이제 카드를 무한으로 복제 배치할 수 있도록 설정 */
+        
+        /* 🚨 뫼비우스 루프를 위한 래퍼 추가 */
         .carousel-wrapper {
             position: relative;
             width: 100vw;
@@ -36,12 +27,249 @@
             display: flex; 
             width: 100%; 
             height: 100vh; 
-            /* 🚨 transition을 자바스크립트에서 제어할 수 있도록 여기서는 기본만 남김 */
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
         }
 
-        .card { flex-shrink: 0; width: 100vw; height: 100vh; position: relative; display: flex; flex-direction: column; padding: 0; }
+        .card { flex-shrink: 0; width: 100vw; height: 100vh; position: relative; display: flex; flex-direction: column; padding: 0; background: var(--purple); }
         .header-section { padding: 40px 30px 20px; display: flex; flex-direction: column; position: relative; z-index: 2; height: 180px; }
-        .content-section { flex: 1; border-radius: 30px 30px 0 0; padding: 35px 25px 90px; overflow-y: auto; display: flex; flex-direction: column; gap: 18px; touch-action: pan-y; }
+        .content-section { flex: 1; background: var(--lilac); border-radius: 30px 30px 0 0; padding: 35px 25px 90px; overflow-y: auto; display: flex; flex-direction: column; gap: 18px; touch-action: pan-y; }
+        .card.cover, .card.cta { background: var(--dark); justify-content: center; align-items: center; padding: 40px; text-align: center; }
 
-        .card.co
+        /* 🚨 로고 통일 및 텍스트 래핑 방어막 적용 */
+        .logo { position: absolute; top: 25px; right: 15px; width: 58px; z-index: 10; pointer-events: none; }
+        
+        .page-num-header { font-size: 2.2rem; font-weight: 900; color: rgba(255,255,255,0.2); position: absolute; left: 30px; top: 35px; z-index: 1;}
+        .tag { display: inline-block; background: rgba(255,255,255,0.1); color: var(--lilac); padding: 8px 18px; border-radius: 20px; font-weight: 800; font-size: 1rem; margin-bottom: 20px; border: 1px solid rgba(210,199,255,0.3); }
+        
+        .page-title { color: white; font-size: 1.7rem; font-weight: 800; line-height: 1.3; margin-top: 5px; }
+        .page-title::before { content: ""; float: right; width: 55px; height: 55px; }
+
+        .info-card { background: white; border-radius: 16px; padding: 25px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; }
+        .info-card.dark { background: var(--dark); color: white; }
+        .info-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 8px; color: var(--dark); line-height: 1.3; }
+        .info-card.dark h3 { color: white; }
+        .info-card p { font-size: 1.05rem; line-height: 1.5; color: #444; font-weight: 500; }
+        .info-card.dark p { color: #d0d0d0; }
+        .info-badge { display: inline-block; font-size: 0.9rem; font-weight: 800; color: var(--purple); margin-bottom: 8px; }
+        .info-card.dark .info-badge { color: var(--neon); }
+
+        .cover-title { font-size: 3.5rem; font-weight: 900; color: var(--yellow); line-height: 1.2; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .cover-sub { font-size: 1.25rem; color: white; line-height: 1.6; margin-bottom: 40px; font-weight: 600; }
+
+        .cta-btn { display: inline-flex; align-items: center; justify-content: center; background: var(--neon); color: var(--dark); text-decoration: none; padding: 16px 28px; border-radius: 50px; font-weight: 900; font-size: 1.15rem; margin-top: 30px; box-shadow: 0 4px 15px rgba(225, 251, 98, 0.2); width: auto; min-width: 220px; max-width: 280px; }
+        .bottom-bar { position: absolute; bottom: 0; left: 0; width: 100%; height: 60px; background: rgba(46, 42, 80, 0.95); display: flex; justify-content: space-between; align-items: center; padding: 0 25px; z-index: 10; pointer-events: none;}
+        .bottom-text { font-size: 0.9rem; color: var(--neon); font-weight: 700; }
+        .page-indicator { font-weight: 800; font-size: 1.1rem; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="carousel-wrapper">
+    <div class="carousel-container" id="slider">
+        <!-- 1페이지 -->
+        <div class="card cover">
+            <div class="tag">KOSDAQ 141080</div>
+            <h1 class="cover-title">리가켐바이오</h1>
+            <p class="cover-sub">J&J 1상 완료의 나비효과<br>신한투자증권 리포트 요약</p>
+            <div class="info-card dark" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); max-width: 320px;">
+                <h3 style="color:var(--yellow); text-align:center; font-size: 1.1rem; margin-bottom: 5px;">누적 기술이전 계약 규모</h3>
+                <p style="text-align:center; font-size: 1.8rem; font-weight: 900; color: white;">약 9조 6,000억원</p>
+            </div>
+            <div class="bottom-bar" style="background: transparent;">
+                <div class="page-indicator" style="width: 100%; text-align: right;">01 / 06</div>
+            </div>
+        </div>
+        
+        <!-- 2페이지 -->
+        <div class="card">
+            <div class="header-section">
+                <span class="page-num-header">02</span>
+                <div style="padding-left: 60px;"><h2 class="page-title">독보적 ADC 플랫폼<br>ConjuALL</h2></div>
+            </div>
+            <div class="content-section">
+                <div class="info-card">
+                    <span class="info-badge">차세대 링커 / 신규 페이로드</span>
+                    <h3>혈액 독성 등 부작용 극소화</h3>
+                    <p>친수성 마스킹 처리를 통해 정상 세포에선 비활성 상태를 유지하고, 암세포 내부에서만 맹독성을 발휘하도록 설계되었습니다.</p>
+                </div>
+                <div class="info-card dark">
+                    <span class="info-badge" style="color:var(--yellow)">시장 지배력</span>
+                    <h3>엔허투를 넘어서는 잠재력</h3>
+                    <p>압도적 기술력으로 후발 주자라도 글로벌 1위 약물 '엔허투'처럼 시장을 장악할 수 있는 파급력을 지녔습니다.</p>
+                </div>
+            </div>
+            <div class="bottom-bar"><div class="bottom-text">기술적 해자 구축 완료</div><div class="page-indicator">02 / 06</div></div>
+        </div>
+
+        <!-- 3페이지 (제목 수정됨) -->
+        <div class="card">
+            <div class="header-section">
+                <span class="page-num-header">03</span>
+                <div style="padding-left: 60px;">
+                    <h2 class="page-title">J&J 1상<br>완료 임박<br>거대한 나비효과</h2>
+                </div>
+            </div>
+            <div class="content-section">
+                <div class="info-card">
+                    <span class="info-badge">LCB84 · TROP2 고형암</span>
+                    <h3>J&J 임상 레퍼런스 확보</h3>
+                    <p>상반기 내 1상 종료가 예상됩니다. 글로벌 1위 빅파마 J&J(얀센)와의 임상 진행으로 확고한 기술 레퍼런스를 구축했습니다.</p>
+                </div>
+                <div class="info-card dark" style="background:var(--dark); padding: 25px 20px;">
+                    <h3 style="color:var(--yellow); font-size:1.15rem;">🔥 3,000억 마일스톤 기대</h3>
+                    <p style="color:#d0d0d0;">J&J가 단독 개발 옵션을 행사할 시 2억 달러가 유입되며, 이는 향후 추가 기술이전을 폭발시킬 분수령이 될 것입니다.</p>
+                </div>
+            </div>
+            <div class="bottom-bar"><div class="bottom-text">상반기 최대 모멘텀</div><div class="page-indicator">03 / 06</div></div>
+        </div>
+
+        <!-- 4페이지 (제목 수정됨) -->
+        <div class="card">
+            <div class="header-section">
+                <span class="page-num-header">04</span>
+                <div style="padding-left: 60px;">
+                    <h2 class="page-title">5월 ASCO 출격<br>파이프라인 폭발</h2>
+                </div>
+            </div>
+            <div class="content-section">
+                <div class="info-card">
+                    <span class="info-badge">LCB71 · ROR1 혈액암</span>
+                    <h3>1차 치료제 승인 가능성 대두</h3>
+                    <p>기존 표준치료제(SoC)와 병용 투여 시 전체반응률(ORR)의 획기적 개선 사례가 확인되었습니다. (5월 ASCO 결과 발표 주목)</p>
+                </div>
+                <div class="info-card" style="background:#fff3cd; border:none;">
+                    <h3 style="color:#856404; font-size:1.15rem;">💡 연내 4개 신약 임상 진입</h3>
+                    <p style="color:#664d03;">파트너사(IKSUDA, SOTIO 등)를 포함해 연내 최소 4개 파이프라인이 새롭게 글로벌 임상에 진입합니다.</p>
+                </div>
+            </div>
+            <div class="bottom-bar"><div class="bottom-text">미국종양학회 모멘텀</div><div class="page-indicator">04 / 06</div></div>
+        </div>
+
+        <!-- 5페이지 -->
+        <div class="card">
+            <div class="header-section">
+                <span class="page-num-header">05</span>
+                <div style="padding-left: 60px;"><h2 class="page-title">글로벌 파트너십<br>핵심 요약</h2></div>
+            </div>
+            <div class="content-section">
+                <div class="info-card dark" style="background:var(--dark); text-align:center; padding: 30px 20px;">
+                    <p style="color:#d0d0d0; margin-bottom: 10px;">연평균 20% 초고속 성장</p>
+                    <h3 style="font-size: 1.8rem; color:var(--yellow);">글로벌 ADC 시장의<br>핵심 플레이어</h3>
+                </div>
+                <div class="info-card">
+                    <ul style="list-style:none; padding:0; font-size:1.1rem; line-height:1.8;">
+                        <li style="border-bottom:1px solid #eee; padding:10px 0;"><b>🇺🇸 J&J (얀센):</b> 2.2조원 규모</li>
+                        <li style="border-bottom:1px solid #eee; padding:10px 0;"><b>🇺🇸 AMGEN:</b> 1.6조원 규모</li>
+                        <li style="border-bottom:1px solid #eee; padding:10px 0;"><b>🇪🇺 SOTIO:</b> 1.2조원 규모</li>
+                        <li style="padding:10px 0;"><b>🇬🇧 Iksuda / 🇯🇵 ONO</b> 등 다수 확보</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-bar"><div class="bottom-text">9.6조원의 가치 증명</div><div class="page-indicator">05 / 06</div></div>
+        </div>
+
+        <!-- 6페이지 -->
+        <div class="card cta">
+            <h2 style="color: white; margin-bottom: 25px; font-size: 2.2rem; line-height: 1.4; font-weight: 900;">
+                투자의 완성은<br><span style="color: var(--neon);">하이스타 블로그</span>에서
+            </h2>
+            <p style="color: #d0d0d0; margin-bottom: 15px; font-size: 1.2rem; line-height: 1.6;">
+                신한투자증권 리포트 원문과<br>더 깊은 투자 인사이트를<br>지금 바로 확인하세요.
+            </p>
+            <a href="https://blog.naver.com/jin0oo" class="cta-btn" target="_blank">블로그 바로가기 ➔</a>
+            <div class="bottom-bar" style="background: transparent; flex-direction: column; justify-content: flex-end; padding-bottom: 30px;">
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 15px;">본 콘텐츠는 정보 제공 목적이며<br>특정 종목의 매수/매도를 추천하지 않습니다.</div>
+                <div class="page-indicator" style="color: rgba(255,255,255,0.6);">06 / 06</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 🚨 모든 카드에 통일된 로고 삽입 및 무한 클론 루프 스크립트
+    const logoUrl = 'https://cdn.jsdelivr.net/gh/highstar24/logo@main/logo_png.png';
+    const container = document.getElementById('slider');
+    let cards = Array.from(container.children);
+    
+    // 오리지널 카드에 로고 일괄 삽입
+    cards.forEach((card) => {
+        const img = document.createElement('img'); 
+        img.src = logoUrl; 
+        img.className = 'logo'; 
+        card.appendChild(img); 
+    });
+
+    // 뫼비우스 띠를 위한 클론(복제) 생성
+    const firstCardClone = cards[0].cloneNode(true);
+    const lastCardClone = cards[cards.length - 1].cloneNode(true);
+
+    container.appendChild(firstCardClone);       // 맨 뒤에 1번 복제본 추가
+    container.insertBefore(lastCardClone, cards[0]); // 맨 앞에 6번 복제본 추가
+
+    const totalOriginalCards = cards.length;
+    let currentIndex = 1; 
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    // 시작할 때 진짜 1번 페이지를 보여주기 위해 위치 조정
+    container.style.transform = `translateX(-100vw)`;
+
+    // 애니메이션 이동 함수
+    function updateTransform(animate = true) { 
+        if (animate) {
+            container.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+        } else {
+            container.style.transition = 'none'; // 몰래 이동할 때는 애니메이션 끄기
+        }
+        container.style.transform = `translateX(-${currentIndex * 100}vw)`; 
+    }
+
+    // 트랜지션이 끝났을 때 눈속임 처리
+    container.addEventListener('transitionend', () => {
+        if (currentIndex === totalOriginalCards + 1) {
+            currentIndex = 1; 
+            updateTransform(false); 
+        }
+        else if (currentIndex === 0) {
+            currentIndex = totalOriginalCards; 
+            updateTransform(false); 
+        }
+    });
+
+    // 터치 이벤트 로직
+    container.addEventListener('touchstart', (e) => {
+        if(e.target.closest('.content-section')) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            return;
+        }
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        if (e.target.closest('a')) return;
+
+        const diffX = startX - (currentX || e.changedTouches[0].clientX);
+
+        if (diffX > 50) { 
+            currentIndex++; 
+            updateTransform(); 
+        } else if (diffX < -50) { 
+            currentIndex--; 
+            updateTransform(); 
+        }
+
+        isDragging = false;
+        currentX = 0;
+    });
+</script>
+</body>
+</html>
