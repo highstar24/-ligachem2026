@@ -15,15 +15,16 @@
         .content-section { flex: 1; background: var(--lilac); border-radius: 30px 30px 0 0; padding: 35px 25px 90px; overflow-y: auto; display: flex; flex-direction: column; gap: 18px; touch-action: pan-y; }
         .card.cover, .card.cta { background: var(--dark); justify-content: center; align-items: center; padding: 40px; text-align: center; }
         
-        /* 🚨 수정 1: 로고를 왼쪽 상단(페이지 번호 위)으로 이동 */
-        .logo { position: absolute; top: 15px; left: 30px; width: 45px; z-index: 10; pointer-events: none; }
+        /* 🚨 수정: 로고 사이즈 키우고 우측 원복 */
+        .logo { position: absolute; top: 15px; right: 20px; width: 65px; z-index: 10; pointer-events: none; }
         
-        /* 🚨 수정 2: 로고 자리 마련을 위해 페이지 번호를 아래로 살짝 내림 */
-        .page-num-header { font-size: 2.2rem; font-weight: 900; color: rgba(255,255,255,0.2); position: absolute; left: 30px; top: 65px; z-index: 1;}
+        /* 🚨 수정: 로고가 빠진 왼쪽 숫자 위치 복구 */
+        .page-num-header { font-size: 2.2rem; font-weight: 900; color: rgba(255,255,255,0.2); position: absolute; left: 30px; top: 35px; z-index: 1;}
         
         .tag { display: inline-block; background: rgba(255,255,255,0.1); color: var(--lilac); padding: 8px 18px; border-radius: 20px; font-weight: 800; font-size: 1rem; margin-bottom: 20px; border: 1px solid rgba(210,199,255,0.3); }
-        /* 제목 높이 조정 (로고랑 겹치지 않도록 마진 추가) */
-        .page-title { color: white; font-size: 1.7rem; font-weight: 800; line-height: 1.3; margin-top: 15px; }
+        
+        /* 🚨 수정: 제목 우측에 여백(padding-right)을 주어 로고랑 글씨가 겹치지 않게 방어막 침 */
+        .page-title { color: white; font-size: 1.7rem; font-weight: 800; line-height: 1.3; margin-top: 5px; padding-right: 45px; }
         
         .info-card { background: white; border-radius: 16px; padding: 25px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; }
         .info-card.dark { background: var(--dark); color: white; }
@@ -34,10 +35,12 @@
         .info-badge { display: inline-block; font-size: 0.9rem; font-weight: 800; color: var(--purple); margin-bottom: 8px; }
         .info-card.dark .info-badge { color: var(--neon); }
         
+        /* 🚨 표지와 마지막 페이지 전용 로고 클래스 */
+        .cover-logo { position: absolute; top: 30px; right: 30px; width: 70px; z-index: 10; pointer-events: none; }
+        
         .cover-title { font-size: 3.5rem; font-weight: 900; color: var(--yellow); line-height: 1.2; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
         .cover-sub { font-size: 1.25rem; color: white; line-height: 1.6; margin-bottom: 40px; font-weight: 600; }
         
-        /* 🚨 수정 3: 마지막 페이지 버튼 폭을 줄이고 디자인 다이어트 */
         .cta-btn { 
             display: inline-flex; align-items: center; justify-content: center; 
             background: var(--neon); color: var(--dark); text-decoration: none; 
@@ -58,6 +61,8 @@
 <div class="carousel-container" id="slider">
     <!-- 1페이지 -->
     <div class="card cover">
+        <!-- 🚨 추가: 1페이지 로고 -->
+        <img src="https://cdn.jsdelivr.net/gh/highstar24/logo@main/logo_png.png" class="cover-logo" alt="logo">
         <div class="tag">KOSDAQ 141080</div>
         <h1 class="cover-title">리가켐바이오</h1>
         <p class="cover-sub">J&J 1상 완료의 나비효과<br>신한투자증권 리포트 요약</p>
@@ -151,6 +156,8 @@
     </div>
     <!-- 6페이지 -->
     <div class="card cta">
+        <!-- 🚨 추가: 마지막 페이지 로고 -->
+        <img src="https://cdn.jsdelivr.net/gh/highstar24/logo@main/logo_png.png" class="cover-logo" alt="logo">
         <h2 style="color: white; margin-bottom: 25px; font-size: 2.2rem; line-height: 1.4; font-weight: 900;">
             투자의 완성은<br><span style="color: var(--neon);">하이스타 블로그</span>에서
         </h2>
@@ -167,7 +174,7 @@
 
 <script>
     const logoUrl = 'https://cdn.jsdelivr.net/gh/highstar24/logo@main/logo_png.png';
-    // 🚨 1페이지와 마지막 페이지를 제외하고 2,3,4,5 페이지에만 왼쪽 상단 로고 추가
+    // 1페이지(표지)와 6페이지(마지막)는 위에 직접 태그로 넣었으므로 제외하고, 내지(2~5페이지)에만 일괄 삽입
     document.querySelectorAll('.card').forEach((card, index) => {
         if(index !== 0 && index !== 5) { 
             const img = document.createElement('img'); 
